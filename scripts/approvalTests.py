@@ -75,9 +75,9 @@ overallResult = 0
 
 
 def diffFiles(fileA, fileB):
-    with io.open(fileA, 'r', encoding='utf-8', errors='surrogateescape') as file:
+    with io.open(fileA, 'r', encoding='utf-8', errors='replace') as file:
         aLines = [line.rstrip() for line in file.readlines()]
-    with io.open(fileB, 'r', encoding='utf-8', errors='surrogateescape') as file:
+    with io.open(fileB, 'r', encoding='utf-8', errors='replace') as file:
         bLines = [line.rstrip() for line in file.readlines()]
 
     shortenedFilenameA = fileA.rsplit(os.sep, 1)[-1]
@@ -141,8 +141,8 @@ def approve(baseName, args):
     subprocess.call(args, stdout=f, stderr=f)
     f.close()
 
-    rawFile = io.open(rawResultsPath, 'r', encoding='utf-8', errors='surrogateescape')
-    filteredFile = io.open(filteredResultsPath, 'w', encoding='utf-8', errors='surrogateescape')
+    rawFile = io.open(rawResultsPath, 'r', encoding='utf-8', errors='replace')
+    filteredFile = io.open(filteredResultsPath, 'w', encoding='utf-8', errors='replace')
     for line in rawFile:
         filteredFile.write(filterLine(line).rstrip() + "\n")
     filteredFile.close()
