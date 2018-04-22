@@ -154,8 +154,8 @@ def approve(baseName, args):
     if os.path.exists(baselinesPath):
         diffResult = diffFiles(baselinesPath, filteredResultsPath)
         if diffResult:
-            print('\n'.join(diffResult))
-            print("  \n****************************\n  \033[91mResults differed")
+            print(u'\n'.join(x.decode('utf-8') for x in diffResult))
+            print(u"  \n****************************\n  \033[91mResults differed")
             if len(diffResult) > overallResult:
                 overallResult = len(diffResult)
         else:
